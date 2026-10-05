@@ -1,0 +1,26 @@
+:root{--ink:#222;--muted:#777;--bg:#fafafa;--gap:16px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Helvetica Neue",Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.5}
+.head{text-align:center;padding:56px 20px 28px}
+.head h1{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:300;letter-spacing:.04em}
+.head p{color:var(--muted);margin-top:8px}
+
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:var(--gap);max-width:1200px;margin:0 auto;padding:20px var(--gap) 48px}
+.item{position:relative;overflow:hidden;aspect-ratio:4/3;border-radius:6px;background:#e5e5e5;cursor:pointer}
+.item img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .5s ease,opacity .5s ease}
+.item figcaption{position:absolute;left:0;right:0;bottom:0;padding:14px 16px;color:#fff;font-size:1rem;background:linear-gradient(transparent,rgba(0,0,0,.7));transform:translateY(100%);opacity:0;transition:transform .4s ease,opacity .4s ease}
+.item:hover img,.item:focus-visible img{transform:scale(1.12);opacity:.88}
+.item:hover figcaption,.item:focus-visible figcaption{transform:translateY(0);opacity:1}
+.item:focus-visible{outline:3px solid #3a7bd5;outline-offset:3px}
+.foot{text-align:center;color:var(--muted);font-size:.85rem;padding:0 20px 36px}
+
+/* touch screens have no hover, so captions stay visible */
+@media (hover:none){
+  .item figcaption{transform:none;opacity:1}
+}
+@media (max-width:520px){
+  .gallery{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important}
+}
